@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
 
   private void Move()
   {
-    rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed).normalized;
+    rb.velocity = moveDirection.normalized * moveSpeed;
   }
 
   private void Attack()

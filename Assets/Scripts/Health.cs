@@ -20,6 +20,12 @@ public class Health : MonoBehaviour
 
   }
 
+  public void SetHealth(int maxHealth, int health)
+  {
+    this.MAX_HEALTH = maxHealth;
+    this.health = health;
+  }
+
   public void Damage(int damageAmount)
   {
     if (damageAmount < 0)
