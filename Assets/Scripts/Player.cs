@@ -3,24 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerScript : MonoBehaviour
+public class Player : MonoBehaviour
 {
   public float moveSpeed = 3f;
-  public InputAction playerControls;
   public Rigidbody2D rb;
 
   private Vector2 moveDirection;
   private bool facingRight = true;
-
-  private void OnEnable()
-  {
-    playerControls.Enable();
-  }
-
-  private void OnDisable()
-  {
-    playerControls.Disable();
-  }
 
   // Start is called before the first frame update
   void Start()
@@ -31,7 +20,7 @@ public class PlayerScript : MonoBehaviour
   // Update is called once per frame
   private void Update()
   {
-    moveDirection = playerControls.ReadValue<Vector2>();
+
   }
 
   private void FixedUpdate()
@@ -60,5 +49,17 @@ public class PlayerScript : MonoBehaviour
       transform.localScale = new Vector3(1, 1, 1);
       facingRight = true;
     }
+  }
+
+  private void OnFire()
+  {
+    Debug.Log("Fire");
+    // gameObject.GetComponent<Health>().Damage(100);
+  }
+
+  private void OnMove(InputValue value)
+  {
+
+    moveDirection = value.Get<Vector2>();
   }
 }
