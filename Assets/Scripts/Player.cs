@@ -8,19 +8,33 @@ public class Player : MonoBehaviour
   public float moveSpeed = 3f;
   public Rigidbody2D rb;
 
+  private GameObject attackArea;
   private Vector2 moveDirection;
   private bool facingRight = true;
+  private bool attacking = false;
+  private float attackSpeed = 0.25f;
+  private float attackTimer = 0f;
 
   // Start is called before the first frame update
   void Start()
   {
-
+    attackArea = transform.GetChild(0).gameObject;
   }
 
   // Update is called once per frame
   private void Update()
   {
+    if (attacking)
+    {
+      attackTimer += Time.deltaTime;
 
+      if (attackTimer >= attackSpeed)
+      {
+        attacking = false;
+        attackArea.SetActive(attacking);
+        attackTimer = 0f;
+      }
+    }
   }
 
   private void FixedUpdate()
@@ -32,6 +46,12 @@ public class Player : MonoBehaviour
   private void Move()
   {
     rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed).normalized;
+  }
+
+  private void Attack()
+  {
+    attacking = true;
+    attackArea.SetActive(attacking);
   }
 
   private void CheckForFlip()
@@ -54,6 +74,7 @@ public class Player : MonoBehaviour
   private void OnFire()
   {
     Debug.Log("Fire");
+    Attack();
     // gameObject.GetComponent<Health>().Damage(100);
   }
 
