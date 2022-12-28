@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Health : MonoBehaviour
 {
   public int health = 100;
+  public static Action OnPlayerDeath;
+  public static Action OnEnemyDeath;
 
   private int MAX_HEALTH = 100;
 
@@ -62,7 +65,7 @@ public class Health : MonoBehaviour
     bool isOverHeal = health + healAmount > MAX_HEALTH;
 
     StartCoroutine(VisualIndicator(Color.red));
-    
+
     if (isOverHeal)
     {
       this.health = MAX_HEALTH;
@@ -73,7 +76,16 @@ public class Health : MonoBehaviour
 
   private void Die()
   {
-    Debug.Log("Dead");
+    if (this.CompareTag("Player"))
+    {
+      Time.timeScale = 0;
+      OnPlayerDeath?.Invoke();
+    }
+    else
+    {
+      OnEnemyDeath?.Invoke();
+    }
+
     Destroy(gameObject);
   }
 }

@@ -32,7 +32,10 @@ public class Enemy : MonoBehaviour
 
   private void MoveToPlayer()
   {
-    transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+    if (player != null)
+    {
+      transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+    }
   }
 
   private void OnTriggerEnter2D(Collider2D collider)
