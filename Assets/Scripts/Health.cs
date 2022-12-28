@@ -26,6 +26,13 @@ public class Health : MonoBehaviour
     this.health = health;
   }
 
+  private IEnumerator VisualIndicator(Color color)
+  {
+    GetComponent<SpriteRenderer>().color = color;
+    yield return new WaitForSeconds(0.15f);
+    GetComponent<SpriteRenderer>().color = Color.white;
+  }
+
   public void Damage(int damageAmount)
   {
     if (damageAmount < 0)
@@ -33,6 +40,8 @@ public class Health : MonoBehaviour
       throw new System.ArgumentOutOfRangeException("Damage amount cannot be negative");
 
     }
+
+    StartCoroutine(VisualIndicator(Color.red));
 
     this.health -= damageAmount;
 
@@ -52,12 +61,14 @@ public class Health : MonoBehaviour
 
     bool isOverHeal = health + healAmount > MAX_HEALTH;
 
+    StartCoroutine(VisualIndicator(Color.red));
+    
     if (isOverHeal)
     {
       this.health = MAX_HEALTH;
     }
 
-    this.health -= healAmount;
+    this.health += healAmount;
   }
 
   private void Die()
