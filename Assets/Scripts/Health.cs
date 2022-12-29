@@ -39,7 +39,6 @@ public class Health : MonoBehaviour
     if (healAmount < 0)
     {
       throw new System.ArgumentOutOfRangeException("Heal amount cannot be negative");
-
     }
 
     bool isOverHeal = health + healAmount > MAX_HEALTH;

@@ -341,6 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  rb: {fileID: 110735835}
 --- !u!114 &110735841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1224,6 +1225,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 2849579367895860706, guid: 96190257f102332498930c4c5055d98a, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 2849579367895860734, guid: 96190257f102332498930c4c5055d98a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1280,6 +1285,10 @@ PrefabInstance:
     - target: {fileID: 6303638324547866641, guid: 4cf4bce390dfe854ab16a9a464f21945, type: 3}
       propertyPath: m_Name
       value: BigSlime
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303638324547866641, guid: 4cf4bce390dfe854ab16a9a464f21945, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 6303638324547866647, guid: 4cf4bce390dfe854ab16a9a464f21945, type: 3}
       propertyPath: m_RootOrder
