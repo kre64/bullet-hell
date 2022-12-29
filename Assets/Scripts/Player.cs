@@ -73,9 +73,7 @@ public class Player : MonoBehaviour
 
   private void OnFire()
   {
-    Debug.Log("Fire");
     Attack();
-    // gameObject.GetComponent<Health>().Damage(100);
   }
 
   private void OnMove(InputValue value)

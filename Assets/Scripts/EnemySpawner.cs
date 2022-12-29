@@ -16,12 +16,6 @@ public class EnemySpawner : MonoBehaviour
     StartCoroutine(spawnEnemy(bigSlimeInterval, bigSlimePrefab));
   }
 
-  // Update is called once per frame
-  void Update()
-  {
-
-  }
-
   private IEnumerator spawnEnemy(float interval, GameObject enemy)
   {
     yield return new WaitForSeconds(interval);

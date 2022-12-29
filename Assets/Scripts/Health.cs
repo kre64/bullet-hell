@@ -11,18 +11,6 @@ public class Health : MonoBehaviour
 
   private int MAX_HEALTH = 100;
 
-  // Start is called before the first frame update
-  void Start()
-  {
-
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-
-  }
-
   public void SetHealth(int maxHealth, int health)
   {
     this.MAX_HEALTH = maxHealth;
