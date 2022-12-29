@@ -18,6 +18,11 @@ public class GameOverUI : MonoBehaviour
     this.gameObject.SetActive(false);
   }
 
+  public void ReturnToMenu()
+  {
+    SceneManager.LoadScene(0);
+  }
+
   private void OnDestroy()
   {
     Health.OnPlayerDeath -= ActivateGameObject;
@@ -27,11 +32,6 @@ public class GameOverUI : MonoBehaviour
   private void CountScore()
   {
     score++;
-  }
-
-  public void ReturnToMenu()
-  {
-    SceneManager.LoadScene(0);
   }
 
   private void ActivateGameObject()

@@ -17,19 +17,11 @@ public class Health : MonoBehaviour
     this.health = health;
   }
 
-  private IEnumerator VisualIndicator(Color color)
-  {
-    GetComponent<SpriteRenderer>().color = color;
-    yield return new WaitForSeconds(0.15f);
-    GetComponent<SpriteRenderer>().color = Color.white;
-  }
-
   public void Damage(int damageAmount)
   {
     if (damageAmount < 0)
     {
       throw new System.ArgumentOutOfRangeException("Damage amount cannot be negative");
-
     }
 
     StartCoroutine(VisualIndicator(Color.red));
@@ -60,6 +52,13 @@ public class Health : MonoBehaviour
     }
 
     this.health += healAmount;
+  }
+
+  private IEnumerator VisualIndicator(Color color)
+  {
+    GetComponent<SpriteRenderer>().color = color;
+    yield return new WaitForSeconds(0.15f);
+    GetComponent<SpriteRenderer>().color = Color.white;
   }
 
   private void Die()
