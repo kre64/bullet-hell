@@ -118,11 +118,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2849579367895860706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37604632e2c2f2443a72dd158ceb398f, type: 3}
+  m_Script: {fileID: 11500000, guid: 419749ccbc384be419a401f895989c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  rb: {fileID: 2849579367895860704}
+  enemyData: {fileID: 0}
+  damage: 5
+  moveSpeed: 1.5
+  slimeEnemyData: {fileID: 0}
 --- !u!61 &2849579367895860735
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -158,7 +160,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2849579367895860706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 335444baa59ba114c9bdc7e79ebae461, type: 3}
+  m_Script: {fileID: 11500000, guid: c07a63d3d19b89948be94bf36713ae1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 3b8ee508e574cdf4da531d332d301dd9, type: 2}
+  health: 100

@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  rb: {fileID: 110735835}
+  MAX_HEALTH: 100
 --- !u!114 &110735841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1229,6 +1229,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2849579367895860707, guid: 96190257f102332498930c4c5055d98a, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3b8ee508e574cdf4da531d332d301dd9, type: 2}
     - target: {fileID: 2849579367895860734, guid: 96190257f102332498930c4c5055d98a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1290,6 +1294,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6303638324547866644, guid: 4cf4bce390dfe854ab16a9a464f21945, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: c65bb17b04a61954e9a9c25835ac192d, type: 2}
     - target: {fileID: 6303638324547866647, guid: 4cf4bce390dfe854ab16a9a464f21945, type: 3}
       propertyPath: m_RootOrder
       value: 3
