@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2849579367895860707}
   - component: {fileID: 2849579367895860735}
   - component: {fileID: 2849579367895860732}
+  - component: {fileID: 73529857}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -121,10 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 419749ccbc384be419a401f895989c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 0}
+  enemyData: {fileID: 11400000, guid: 3b8ee508e574cdf4da531d332d301dd9, type: 2}
   damage: 5
   moveSpeed: 1.5
-  slimeEnemyData: {fileID: 0}
 --- !u!61 &2849579367895860735
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -164,3 +164,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &73529857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2849579367895860706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3bbc54f54c8f8f41be0f5859506fcf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

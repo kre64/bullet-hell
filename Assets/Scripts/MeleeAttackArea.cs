@@ -4,18 +4,33 @@ using UnityEngine;
 
 public class MeleeAttackArea : MonoBehaviour
 {
-  public int damage = 3;
+  public WeaponData weaponData;
+  public float knockbackDelay;
+  public float knockbackForce;
+  public int damage;
+
+  // Start is called before the first frame update
+  void Start()
+  {
+    InitWeaponValues();
+  }
+
+  private void InitWeaponValues()
+  {
+    damage = weaponData.damage;
+    knockbackForce = weaponData.knockbackForce;
+    knockbackDelay = weaponData.knockbackDelay;
+  }
 
   private void OnTriggerEnter2D(Collider2D collider)
   {
     if (collider.GetComponent<Health>() != null)
     {
-      Rigidbody2D rb = collider.GetComponent<Rigidbody2D>();
       Health health = collider.GetComponent<Health>();
-
       health.Damage(damage);
 
-      GamePhysics.Knockback(rb, 5f, transform.position + collider.transform.position);
+      ObjectPhysics objectPhysics = collider.GetComponent<ObjectPhysics>();
+      objectPhysics.Knockback(collider, transform, knockbackForce, knockbackDelay);
     }
   }
 }

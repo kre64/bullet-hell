@@ -5,8 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
   public EnemyData enemyData;
-  public int damage = 5;
-  public float moveSpeed = 1.5f;
+  protected int damage;
+  protected float moveSpeed;
 
   // Start is called before the first frame update
   void Start()
@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    // MoveToPlayer();
+
   }
 
   private void InitEnemyValues()
@@ -26,20 +26,4 @@ public class Enemy : MonoBehaviour
     damage = enemyData.damage;
     moveSpeed = enemyData.moveSpeed;
   }
-
-  // private void MoveToPlayer()
-  // {
-  //   if (player != null)
-  //   {
-  //     transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
-  //   }
-  // }
-
-  // private void OnTriggerEnter2D(Collider2D collider)
-  // {
-  //   if (collider.CompareTag("Player") && collider.GetComponent<Health>() != null)
-  //   {
-  //     collider.GetComponent<Health>().Damage(damage);
-  //   }
-  // }
 }

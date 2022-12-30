@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
   private Vector2 moveDirection;
   private bool facingRight = true;
   private bool attacking = false;
-  private float attackSpeed = 0.25f;
+  private float attackSpeed = 0.15f;
   private float attackTimer = 0f;
 
   // Start is called before the first frame update
