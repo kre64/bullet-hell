@@ -15,6 +15,5 @@ public class ObjectPhysics : MonoBehaviour
   {
     yield return new WaitForSeconds(delaySeconds);
     knockbackTargetRb.velocity = Vector2.zero;
-    Debug.Log("Reset knockback target velocity");
   }
 }

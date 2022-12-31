@@ -15,7 +15,6 @@ public class Health : MonoBehaviour
   {
     this.MAX_HEALTH = maxHealth;
     this.health = health;
-    Debug.Log(this.health);
   }
 
   public void Damage(int damageAmount)
@@ -28,7 +27,6 @@ public class Health : MonoBehaviour
     StartCoroutine(VisualIndicator(Color.red));
 
     this.health -= damageAmount;
-    Debug.Log(this.health);
 
     if (health <= 0)
     {
