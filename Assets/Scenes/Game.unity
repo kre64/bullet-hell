@@ -408,12 +408,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 110735834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d49af22e2f5a10a46831e3855750cc1b, type: 3}
+  m_Script: {fileID: 11500000, guid: 62319acc7ec34ff45a61c62523a5bbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
   firePoint: {fileID: 424937994}
-  projectilePrefab: {fileID: 2543653105104699810, guid: 2b7acc4a2021a9e43a83a368e6f9ea15, type: 3}
+  raycastWeaponData: {fileID: 11400000, guid: 1e30b38b913a61e439e89328780bbd7b, type: 2}
 --- !u!1 &113237496
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &487560786
 Transform:
   m_ObjectHideFlags: 0
@@ -885,12 +885,12 @@ GameObject:
   - component: {fileID: 1375743438}
   - component: {fileID: 1375743439}
   m_Layer: 6
-  m_Name: BaseGun
+  m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1375743438
 Transform:
   m_ObjectHideFlags: 0

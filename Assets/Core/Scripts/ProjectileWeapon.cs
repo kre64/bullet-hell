@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ProjectileWeapon : Weapon
 {
+  public ProjectileData projectileData;
   public GameObject projectilePrefab;
 
   public override void Shoot()

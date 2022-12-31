@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pistol : RaycastWeapon
+public class Shotgun : ProjectileWeapon
 {
-
+  
 }

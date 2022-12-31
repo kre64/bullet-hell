@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+  public ProjectileData projectileData;
   public Rigidbody2D rb;
 
   private int damage = 4;
@@ -14,7 +15,16 @@ public class Projectile : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
+    SetProjectileValues(projectileData.damage, projectileData.speed, projectileData.knockbackForce, projectileData.knockbackDelay);
     rb.velocity = transform.right * speed;
+  }
+
+  public void SetProjectileValues(int damage, float speed, float knockbackForce, float knockbackDelay)
+  {
+    this.damage = damage;
+    this.speed = speed;
+    this.knockbackForce = knockbackForce;
+    this.knockbackDelay = knockbackDelay;
   }
 
   private void OnTriggerEnter2D(Collider2D collider)
