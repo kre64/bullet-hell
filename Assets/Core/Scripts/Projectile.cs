@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-  public int damage = 20;
-  public float speed = 20f;
-  public float knockbackForce = 10f;
-  public float knockbackDelay = 0.15f;
   public Rigidbody2D rb;
+  
+  private int damage = 4;
+  private float speed = 20f;
+  private float knockbackForce = 5f;
+  private float knockbackDelay = 0.1f;
 
   // Start is called before the first frame update
   void Start()
