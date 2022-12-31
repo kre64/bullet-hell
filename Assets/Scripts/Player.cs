@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
   // Update is called once per frame
   private void Update()
   {
-    
+
   }
 
   private void FixedUpdate()
@@ -66,8 +66,14 @@ public class Player : MonoBehaviour
     mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
     Vector3 rotation = mousePosition - activeGun.transform.position;
 
-    float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-    
-    activeGun.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
+    float weaponRotation = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+    if (!facingRight)
+    {
+      activeGun.transform.rotation = Quaternion.Euler(180f, 0f, -weaponRotation);
+    }
+    else
+    {
+      activeGun.transform.rotation = Quaternion.Euler(0f, 0f, weaponRotation);
+    }
   }
 }
