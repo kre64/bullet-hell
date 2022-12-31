@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-  public EnemyData enemyData;
-  protected int damage;
-  protected float moveSpeed;
+  public int hp;
+  public int maxHp;
+  public int damage;
+  public float moveSpeed;
 
   // Start is called before the first frame update
   void Start()
   {
-    InitEnemyValues();
+    
   }
 
   // Update is called once per frame
@@ -20,10 +21,8 @@ public class Enemy : MonoBehaviour
 
   }
 
-  private void InitEnemyValues()
+  protected void InitEnemyValues()
   {
-    GetComponent<Health>().SetHealth(enemyData.hp, enemyData.hp);
-    damage = enemyData.damage;
-    moveSpeed = enemyData.moveSpeed;
+    GetComponent<Health>().SetHealth(maxHp, hp);
   }
 }

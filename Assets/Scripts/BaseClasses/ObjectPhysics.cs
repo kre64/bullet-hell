@@ -13,9 +13,8 @@ public class ObjectPhysics : MonoBehaviour
 
   private IEnumerator ResetKnockbackTargetVelocity(Rigidbody2D knockbackTargetRb, float delaySeconds)
   {
-    Debug.Log("Waiting for knockback reset");
     yield return new WaitForSeconds(delaySeconds);
-    Debug.Log("Resetting knockback target velocity");
     knockbackTargetRb.velocity = Vector2.zero;
+    Debug.Log("Reset knockback target velocity");
   }
 }

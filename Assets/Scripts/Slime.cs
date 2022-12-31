@@ -9,6 +9,7 @@ public class Slime : Enemy
   // Start is called before the first frame update
   void Start()
   {
+    InitEnemyValues();
     player = GameObject.FindGameObjectWithTag("Player");
   }
 

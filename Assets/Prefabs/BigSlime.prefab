@@ -122,9 +122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 419749ccbc384be419a401f895989c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: c65bb17b04a61954e9a9c25835ac192d, type: 2}
-  damage: 5
-  moveSpeed: 1.5
+  hp: 50
+  maxHp: 50
+  damage: 15
+  moveSpeed: 1
 --- !u!61 &6303638324547866643
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -163,7 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07a63d3d19b89948be94bf36713ae1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
 --- !u!114 &1915188500
 MonoBehaviour:
   m_ObjectHideFlags: 0
