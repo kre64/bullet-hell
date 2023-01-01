@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class WeaponSwitching : MonoBehaviour
 {
-  public static readonly string[] WEAPON_SCRIPTS = new string[] { "Pistol", "Shotgun", "LaserGun", "LaserGunTest" };
+  public static readonly string[] WEAPON_SCRIPTS = new string[] { "Pistol", "Shotgun", "Lasergun" };
   public GameObject weaponHolder;
   public int selectedWeapon = 0;
 

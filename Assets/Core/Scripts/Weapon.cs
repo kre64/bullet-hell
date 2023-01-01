@@ -7,6 +7,8 @@ public abstract class Weapon : MonoBehaviour
   public Camera mainCamera;
   public Transform firePoint;
 
+  protected GameUI gameUI;
+
   public virtual void OnFire()
   {
     // Need this check because OnFire still invoked on disabled scripts
@@ -17,4 +19,10 @@ public abstract class Weapon : MonoBehaviour
   }
 
   public abstract void Shoot();
+
+  protected void AttachGameUI()
+  {
+    gameUI = FindObjectOfType<GameUI>();
+    Debug.Log(gameUI);
+  }
 }

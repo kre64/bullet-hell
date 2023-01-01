@@ -13,6 +13,11 @@ public class RaycastWeapon : Weapon
   private float knockbackDelay = 0.1f;
   private float maxDistance = 100;
 
+  void Awake()
+  {
+    AttachGameUI();
+  }
+
   void Start()
   {
     SetWeaponValues(raycastWeaponData.damage, raycastWeaponData.maxDistance, raycastWeaponData.knockbackForce, raycastWeaponData.knockbackDelay);

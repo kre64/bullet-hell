@@ -8,9 +8,16 @@ public class ProjectileWeapon : Weapon
   public GameObject projectilePrefab;
 
   private int damage = 4;
+  private int currentAmmo = 30;
+  private int maxAmmo = 30;
   private float knockbackForce = 5f;
   private float knockbackDelay = 0.1f;
   private float maxDistance = 100;
+
+  void Awake()
+  {
+    AttachGameUI();
+  }
 
   void Start()
   {

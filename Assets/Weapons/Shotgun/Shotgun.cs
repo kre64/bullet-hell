@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class Shotgun : ProjectileWeapon
 {
-
+  void OnEnable()
+  {
+    gameUI.SetActiveWeapon("Shotgun");
+  }
 }

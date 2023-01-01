@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserGun : RaycastWeapon
+public class Lasergun : RaycastWeapon
 {
-
+  void OnEnable()
+  {
+    gameUI.SetActiveWeapon("Lasergun");
+  }
 }

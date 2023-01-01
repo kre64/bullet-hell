@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebf15a898b76cbc449671c1180a557a9, type: 3}
-  m_Name: LaserGunData
+  m_Name: LasergunData
   m_EditorClassIdentifier: 
   damage: 4
   maxDistance: 5
