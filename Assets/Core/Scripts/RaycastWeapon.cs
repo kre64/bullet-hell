@@ -5,6 +5,7 @@ using UnityEngine;
 public class RaycastWeapon : Weapon
 {
   public RaycastWeaponData raycastWeaponData;
+  public LineRenderer lineRenderer;
 
   private int damage = 4;
   private float knockbackForce = 5f;
@@ -30,7 +31,17 @@ public class RaycastWeapon : Weapon
         health.Damage(damage);
         objectPhysics.Knockback(hitInfo.collider, firePoint, knockbackForce, knockbackDelay);
       }
+
+      lineRenderer.SetPosition(0, firePoint.position);
+      lineRenderer.SetPosition(1, hitInfo.point);
     }
+    else
+    {
+      lineRenderer.SetPosition(0, firePoint.position);
+      lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100);
+    }
+
+    StartCoroutine(RaycastShot());
   }
 
   public void SetWeaponValues(int damage, float knockbackForce, float knockbackDelay)
@@ -38,5 +49,12 @@ public class RaycastWeapon : Weapon
     this.damage = damage;
     this.knockbackForce = knockbackForce;
     this.knockbackDelay = knockbackDelay;
+  }
+
+  public IEnumerator RaycastShot()
+  {
+    lineRenderer.enabled = true;
+    yield return new WaitForSeconds(0.2f);
+    lineRenderer.enabled = false;
   }
 }

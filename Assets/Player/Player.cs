@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
   public float moveSpeed = 3f;
   public Rigidbody2D rb;
   public Camera mainCamera;
+  public GameObject weaponHolder;
 
   private Vector2 moveDirection;
   private bool facingRight = true;
@@ -17,7 +18,7 @@ public class Player : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    activeGun = transform.GetChild(0).gameObject;
+
   }
 
   // Update is called once per frame
@@ -63,10 +64,13 @@ public class Player : MonoBehaviour
 
   private void AimAtMouse()
   {
+    int selectedWeaponIndex = transform.GetComponent<WeaponSwitching>().selectedWeapon;
+    activeGun = weaponHolder.transform.GetChild(selectedWeaponIndex).gameObject;
     mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-    Vector3 rotation = mousePosition - activeGun.transform.position;
 
+    Vector3 rotation = mousePosition - activeGun.transform.position;
     float weaponRotation = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+
     if (!facingRight)
     {
       activeGun.transform.rotation = Quaternion.Euler(180f, 0f, -weaponRotation);

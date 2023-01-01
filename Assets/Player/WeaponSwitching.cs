@@ -5,9 +5,10 @@ using UnityEngine.InputSystem;
 
 public class WeaponSwitching : MonoBehaviour
 {
+  public static readonly string[] WEAPON_SCRIPTS = new string[] { "Pistol", "Shotgun" };
   public GameObject weaponHolder;
   public int selectedWeapon = 0;
-  
+
   // Start is called before the first frame update
   void Start()
   {
@@ -46,8 +47,6 @@ public class WeaponSwitching : MonoBehaviour
     {
       SelectWeapon();
     }
-
-    Debug.Log(selectedWeapon);
   }
 
   void SelectWeapon()
@@ -57,10 +56,12 @@ public class WeaponSwitching : MonoBehaviour
       if (i == selectedWeapon)
       {
         weaponHolder.transform.GetChild(i).gameObject.SetActive(true);
+        (transform.root.gameObject.GetComponent(WEAPON_SCRIPTS[i]) as MonoBehaviour).enabled = true;
       }
       else
       {
         weaponHolder.transform.GetChild(i).gameObject.SetActive(false);
+        (transform.root.gameObject.GetComponent(WEAPON_SCRIPTS[i]) as MonoBehaviour).enabled = false;
       }
     }
   }
