@@ -515,7 +515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
   firePoint: {fileID: 113237497}
-  weaponData: {fileID: 11400000, guid: 12657f763b9a8734b98344b87ff02c19, type: 2}
+  projectileWeaponData: {fileID: 11400000, guid: 6568b2ec68051de4ea480399ff7b774c, type: 2}
   projectilePrefab: {fileID: 2543653105104699810, guid: 0afd94d0c7f6e3943ad15a0341b09500, type: 3}
 --- !u!114 &110735847
 MonoBehaviour:
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
   firePoint: {fileID: 424937994}
-  weaponData: {fileID: 11400000, guid: dcee1f827ed3e8241848b93dee4b81ee, type: 2}
+  projectileWeaponData: {fileID: 11400000, guid: e27b78386e80f0344a86e580a022670e, type: 2}
   projectilePrefab: {fileID: 2543653105104699810, guid: 2b7acc4a2021a9e43a83a368e6f9ea15, type: 3}
 --- !u!114 &110735848
 MonoBehaviour:
@@ -547,7 +547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
   firePoint: {fileID: 897571874}
-  raycastWeaponData: {fileID: 11400000, guid: 85b1ac37b24402645b883b4e77d07d86, type: 2}
+  raycastWeaponData: {fileID: 11400000, guid: fc4b5cf4d2dd4914b839246fe46e4867, type: 2}
   lineRenderer: {fileID: 1290129759}
 --- !u!1 &113237496
 GameObject:

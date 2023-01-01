@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class ProjectileWeapon : Weapon
 {
-  public WeaponData weaponData;
+  public ProjectileWeaponData projectileWeaponData;
   public GameObject projectilePrefab;
 
-  private int damage = 4;
   private int currentAmmo = 30;
   private int maxAmmo = 30;
-  private float knockbackForce = 5f;
-  private float knockbackDelay = 0.1f;
-  private float maxDistance = 100;
+  private bool reloading = false;
 
   void Awake()
   {
@@ -21,19 +18,24 @@ public class ProjectileWeapon : Weapon
 
   void Start()
   {
-    SetWeaponValues(weaponData.damage, weaponData.maxDistance, weaponData.knockbackForce, weaponData.knockbackDelay);
+    SetWeaponValues(projectileWeaponData);
   }
 
   public override void Shoot()
   {
-    Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+    if (currentAmmo > 0)
+    {
+      Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+      currentAmmo--;
+    }
+    else {
+      Debug.Log("Out of ammo!");
+    }
   }
 
-  public void SetWeaponValues(int damage, float maxDistance, float knockbackForce, float knockbackDelay)
+  public void SetWeaponValues(ProjectileWeaponData projectileWeaponData)
   {
-    this.damage = damage;
-    this.maxDistance = maxDistance;
-    this.knockbackForce = knockbackForce;
-    this.knockbackDelay = knockbackDelay;
+    this.currentAmmo = projectileWeaponData.ammo;
+    this.maxAmmo = projectileWeaponData.maxAmmo;
   }
 }

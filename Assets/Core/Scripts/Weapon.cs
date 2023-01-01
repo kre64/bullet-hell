@@ -18,11 +18,11 @@ public abstract class Weapon : MonoBehaviour
     }
   }
 
-  public abstract void Shoot();
-
   protected void AttachGameUI()
   {
     gameUI = FindObjectOfType<GameUI>();
     Debug.Log(gameUI);
   }
+
+  public abstract void Shoot();
 }

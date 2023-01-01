@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class RaycastWeapon : Weapon
 {
-  public WeaponData raycastWeaponData;
+  public RaycastWeaponData raycastWeaponData;
   public LineRenderer lineRenderer;
 
   private int damage = 4;
-  // private int ammo = 30;
+  private float maxHeat = 100;
+  private float heat = 0;
+  private float heatPerShot = 10;
+  private float heatDecrementTime = 0.6f;
   private float knockbackForce = 5f;
   private float knockbackDelay = 0.1f;
   private float maxDistance = 100;
+  private bool allowFire = true;
 
   void Awake()
   {
@@ -20,12 +24,23 @@ public class RaycastWeapon : Weapon
 
   void Start()
   {
-    SetWeaponValues(raycastWeaponData.damage, raycastWeaponData.maxDistance, raycastWeaponData.knockbackForce, raycastWeaponData.knockbackDelay);
+    SetWeaponValues(raycastWeaponData);
   }
 
   public override void Shoot()
   {
+    if (allowFire)
+    {
+      FireRaycast();
+    }
+  }
+
+  public void FireRaycast()
+  {
     RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, maxDistance);
+    heat += heatPerShot;
+    Debug.Log(heat);
+
     if (hitInfo)
     {
       bool isEnemy = hitInfo.collider.CompareTag("Enemy");
@@ -47,22 +62,69 @@ public class RaycastWeapon : Weapon
       lineRenderer.SetPosition(0, firePoint.position);
       lineRenderer.SetPosition(1, firePoint.position + firePoint.right * maxDistance);
     }
-
     StartCoroutine(RaycastShot());
   }
 
-  public void SetWeaponValues(int damage, float maxDistance, float knockbackForce, float knockbackDelay)
+  public void SetWeaponValues(RaycastWeaponData raycastWeaponData)
   {
-    this.damage = damage;
-    this.maxDistance = maxDistance;
-    this.knockbackForce = knockbackForce;
-    this.knockbackDelay = knockbackDelay;
+    this.damage = raycastWeaponData.damage;
+    this.heatPerShot = raycastWeaponData.heatPerShot;
+    this.heatDecrementTime = raycastWeaponData.heatDecrementTime;
+    this.maxHeat = raycastWeaponData.maxHeat;
+    this.maxDistance = raycastWeaponData.maxDistance;
+    this.knockbackForce = raycastWeaponData.knockbackForce;
+    this.knockbackDelay = raycastWeaponData.knockbackDelay;
   }
 
   public IEnumerator RaycastShot()
   {
     lineRenderer.enabled = true;
-    yield return new WaitForSeconds(0.1f);
-    lineRenderer.enabled = false;
+    allowFire = false;
+
+    if (heat >= maxHeat)
+    {
+      Debug.Log("OVERHEATING");
+      lineRenderer.enabled = false;
+      StartCoroutine(CooldownFromMaxHeat());
+    }
+    else
+    {
+      yield return new WaitForSeconds(0.1f);
+      StartCoroutine(HeatCooldown());
+      lineRenderer.enabled = false;
+      allowFire = true;
+    }
+  }
+
+  public IEnumerator HeatCooldown()
+  {
+    yield return new WaitForSeconds(heatDecrementTime);
+    DecrementHeat();
+  }
+
+  public IEnumerator CooldownFromMaxHeat()
+  {
+    while (heat > 0)
+    {
+      yield return new WaitForSeconds(heatDecrementTime);
+      Debug.Log("OVERHEAT COOLINDOWN " + heat);
+      DecrementHeat();
+    }
+    allowFire = true;
+  }
+
+  private void DecrementHeat()
+  {
+    float heatDecrement = heatPerShot * 0.8f;
+    bool isNegativeHeat = heat - heatPerShot < 0;
+
+    if (isNegativeHeat)
+    {
+      heat = 0;
+    }
+    else
+    {
+      heat -= heatDecrement;
+    }
   }
 }
