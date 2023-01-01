@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2012606892982561163}
   - component: {fileID: -8887825430393398441}
   m_Layer: 3
-  m_Name: ShotgunShells
+  m_Name: ShotgunProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6bdbec0c39d2a8146b1759f85ee86266, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0e2418ce8f214954fa6a9e57892264bc, type: 3}
+  m_Color: {r: 0.8018868, g: 0.6184846, b: 0.03404235, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,10 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586721384cf377b4f902880f49be9990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  speed: 20
-  knockbackForce: 10
-  knockbackDelay: 0.15
+  projectileData: {fileID: 11400000, guid: ea68a6bdaba11d446a0416c1b2cc6ae6, type: 2}
   rb: {fileID: -2012606892982561163}
 --- !u!50 &-2012606892982561163
 Rigidbody2D:

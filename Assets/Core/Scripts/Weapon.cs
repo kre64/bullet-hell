@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour, IWeapon
+public abstract class Weapon : MonoBehaviour
 {
   public Camera mainCamera;
   public Transform firePoint;
 
   public virtual void OnFire()
   {
-    Shoot();
+    // Need this check because OnFire still invoked on disabled scripts
+    if (this.enabled)
+    {
+      Shoot();
+    }
   }
 
-  public virtual void Shoot()
-  {
-    
-  }
+  public abstract void Shoot();
 }

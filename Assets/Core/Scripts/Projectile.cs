@@ -13,10 +13,15 @@ public class Projectile : MonoBehaviour
   private float knockbackDelay = 0.1f;
 
   // Start is called before the first frame update
-  void Start()
+  void OnEnable()
   {
     SetProjectileValues(projectileData.damage, projectileData.speed, projectileData.knockbackForce, projectileData.knockbackDelay);
     rb.velocity = transform.right * speed;
+  }
+
+  void OnDisable()
+  {
+    Destroy(gameObject);
   }
 
   public void SetProjectileValues(int damage, float speed, float knockbackForce, float knockbackDelay)

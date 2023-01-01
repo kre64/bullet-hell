@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class RaycastWeapon : Weapon
 {
-  public RaycastWeaponData raycastWeaponData;
+  public WeaponData raycastWeaponData;
   public LineRenderer lineRenderer;
 
   private int damage = 4;
+  // private int ammo = 30;
   private float knockbackForce = 5f;
   private float knockbackDelay = 0.1f;
+  private float maxDistance = 100;
 
   void Start()
   {
-    SetWeaponValues(raycastWeaponData.damage, raycastWeaponData.knockbackForce, raycastWeaponData.knockbackDelay);
+    SetWeaponValues(raycastWeaponData.damage, raycastWeaponData.maxDistance, raycastWeaponData.knockbackForce, raycastWeaponData.knockbackDelay);
   }
 
   public override void Shoot()
   {
-    RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
+    RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, maxDistance);
     if (hitInfo)
     {
       bool isEnemy = hitInfo.collider.CompareTag("Enemy");
@@ -38,15 +40,16 @@ public class RaycastWeapon : Weapon
     else
     {
       lineRenderer.SetPosition(0, firePoint.position);
-      lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100);
+      lineRenderer.SetPosition(1, firePoint.position + firePoint.right * maxDistance);
     }
 
     StartCoroutine(RaycastShot());
   }
 
-  public void SetWeaponValues(int damage, float knockbackForce, float knockbackDelay)
+  public void SetWeaponValues(int damage, float maxDistance, float knockbackForce, float knockbackDelay)
   {
     this.damage = damage;
+    this.maxDistance = maxDistance;
     this.knockbackForce = knockbackForce;
     this.knockbackDelay = knockbackDelay;
   }
@@ -54,7 +57,7 @@ public class RaycastWeapon : Weapon
   public IEnumerator RaycastShot()
   {
     lineRenderer.enabled = true;
-    yield return new WaitForSeconds(0.2f);
+    yield return new WaitForSeconds(0.1f);
     lineRenderer.enabled = false;
   }
 }
