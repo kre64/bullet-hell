@@ -8,13 +8,13 @@ public class Health : MonoBehaviour
   public static Action OnPlayerDeath;
   public static Action OnEnemyDeath;
 
-  private int health = 100;
-  private int MAX_HEALTH = 100;
+  private int hp = 100;
+  private int maxHp = 100;
 
-  public void SetHealth(int maxHealth, int health)
+  public void SetHealth(int hp, int maxHp)
   {
-    this.MAX_HEALTH = maxHealth;
-    this.health = health;
+    this.maxHp = maxHp;
+    this.hp = hp;
   }
 
   public void Damage(int damageAmount)
@@ -26,9 +26,9 @@ public class Health : MonoBehaviour
 
     StartCoroutine(VisualIndicator(Color.red));
 
-    this.health -= damageAmount;
+    this.hp -= damageAmount;
 
-    if (health <= 0)
+    if (hp <= 0)
     {
       Die();
     }
@@ -41,16 +41,16 @@ public class Health : MonoBehaviour
       throw new System.ArgumentOutOfRangeException("Heal amount cannot be negative");
     }
 
-    bool isOverHeal = health + healAmount > MAX_HEALTH;
+    bool isOverHeal = hp + healAmount > maxHp;
 
     StartCoroutine(VisualIndicator(Color.red));
 
     if (isOverHeal)
     {
-      this.health = MAX_HEALTH;
+      this.hp = maxHp;
     }
 
-    this.health += healAmount;
+    this.hp += healAmount;
   }
 
   private IEnumerator VisualIndicator(Color color)

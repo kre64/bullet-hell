@@ -5,11 +5,13 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-  public float moveSpeed = 3f;
   public Rigidbody2D rb;
   public Camera mainCamera;
   public GameObject weaponHolder;
 
+  private int hp = 100;
+  private int maxHp = 100;
+  private float moveSpeed = 3f;
   private Vector2 moveDirection;
   private bool facingRight = true;
   private Vector3 mousePosition;
@@ -18,7 +20,7 @@ public class Player : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-
+    InitPlayer();
   }
 
   // Update is called once per frame
@@ -79,5 +81,10 @@ public class Player : MonoBehaviour
     {
       activeGun.transform.rotation = Quaternion.Euler(0f, 0f, weaponRotation);
     }
+  }
+
+  protected void InitPlayer()
+  {
+    GetComponent<Health>().SetHealth(hp, maxHp);
   }
 }
