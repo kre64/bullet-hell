@@ -15,7 +15,8 @@ MonoBehaviour:
   damage: 10
   heatPerShot: 10
   maxHeat: 100
-  heatDecrementTime: 8
+  heatDecrement: 8
+  heatDecrementTime: 0.8
   maxDistance: 8
   knockbackForce: 1
   knockbackDelay: 0.05

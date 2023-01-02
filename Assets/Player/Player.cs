@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
 
   private void FixedUpdate()
   {
+    // TODO: Evaluate calls here for perf optimi
     AimAtMouse();
     CheckForFlip();
     Move();
