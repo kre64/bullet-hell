@@ -7,6 +7,6 @@ public class Pistol : ProjectileWeapon
 {
   void OnEnable()
   {
-    gameUI.SetActiveWeapon("Pistol");
+    gameUI.SetActiveWeapon(WeaponType.Pistol, currentAmmo, maxAmmo);
   }
 }
