@@ -7,10 +7,12 @@ public class RaycastWeapon : Weapon
   public RaycastWeaponData raycastWeaponData;
   public LineRenderer lineRenderer;
 
+  protected int maxHeat = 100;
+  protected int heat = 0;
+
   private int damage = 4;
-  private float maxHeat = 100;
-  private float heat = 0;
-  private float heatPerShot = 10;
+  private int heatPerShot = 10;
+  private int heatDecrement = 1;
   private float heatDecrementTime = 0.6f;
   private float knockbackForce = 5f;
   private float knockbackDelay = 0.1f;
@@ -20,10 +22,6 @@ public class RaycastWeapon : Weapon
   void Awake()
   {
     AttachGameUI();
-  }
-
-  void Start()
-  {
     SetWeaponValues(raycastWeaponData);
   }
 
@@ -31,15 +29,16 @@ public class RaycastWeapon : Weapon
   {
     if (allowFire)
     {
-      FireRaycast();
+      Fire();
     }
   }
 
-  public void FireRaycast()
+  public override void Fire()
   {
     RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, maxDistance);
-    heat += heatPerShot;
-    Debug.Log(heat);
+    // TODO: Maybe add a SetHeat func
+    heat = heat + heatPerShot > maxHeat ? maxHeat : heat + heatPerShot;
+    SetHeatText(heat);
 
     if (hitInfo)
     {
@@ -70,6 +69,7 @@ public class RaycastWeapon : Weapon
     this.damage = raycastWeaponData.damage;
     this.heatPerShot = raycastWeaponData.heatPerShot;
     this.heatDecrementTime = raycastWeaponData.heatDecrementTime;
+    this.heatDecrement = raycastWeaponData.heatDecrement;
     this.maxHeat = raycastWeaponData.maxHeat;
     this.maxDistance = raycastWeaponData.maxDistance;
     this.knockbackForce = raycastWeaponData.knockbackForce;
@@ -89,10 +89,11 @@ public class RaycastWeapon : Weapon
     }
     else
     {
-      yield return new WaitForSeconds(0.1f);
-      StartCoroutine(HeatCooldown());
       lineRenderer.enabled = false;
+      yield return new WaitForSeconds(0.1f);
       allowFire = true;
+      StopAllCoroutines();
+      StartCoroutine(CooldownFromMaxHeat());
     }
   }
 
@@ -113,9 +114,14 @@ public class RaycastWeapon : Weapon
     allowFire = true;
   }
 
+
+  protected void SetHeatText(int heat)
+  {
+    gameUI.SetCurrentHeat(heat);
+  }
+
   private void DecrementHeat()
   {
-    float heatDecrement = heatPerShot * 0.8f;
     bool isNegativeHeat = heat - heatPerShot < 0;
 
     if (isNegativeHeat)
@@ -126,5 +132,6 @@ public class RaycastWeapon : Weapon
     {
       heat -= heatDecrement;
     }
+    SetHeatText(heat);
   }
 }

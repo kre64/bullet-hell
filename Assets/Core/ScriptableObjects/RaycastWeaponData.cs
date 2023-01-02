@@ -4,8 +4,9 @@ using UnityEngine;
 public class RaycastWeaponData : ScriptableObject
 {
   public int damage;
-  public float heatPerShot;
-  public float maxHeat;
+  public int heatPerShot;
+  public int maxHeat;
+  public int heatDecrement;
   public float heatDecrementTime;
   public float maxDistance;
   public float knockbackForce;

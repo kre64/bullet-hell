@@ -7,17 +7,14 @@ public class ProjectileWeapon : Weapon
   public ProjectileWeaponData projectileWeaponData;
   public GameObject projectilePrefab;
 
-  private int currentAmmo = 30;
-  private int maxAmmo = 30;
-  private bool reloading = false;
+  protected int currentAmmo = 30;
+  protected int maxAmmo = 30;
+
+  protected bool reloading = false;
 
   void Awake()
   {
     AttachGameUI();
-  }
-
-  void Start()
-  {
     SetWeaponValues(projectileWeaponData);
   }
 
@@ -25,17 +22,29 @@ public class ProjectileWeapon : Weapon
   {
     if (currentAmmo > 0)
     {
-      Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-      currentAmmo--;
+      Fire();
     }
-    else {
+    else
+    {
       Debug.Log("Out of ammo!");
     }
+  }
+
+  public override void Fire()
+  {
+    Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+    currentAmmo--;
+    SetAmmoText(currentAmmo);
   }
 
   public void SetWeaponValues(ProjectileWeaponData projectileWeaponData)
   {
     this.currentAmmo = projectileWeaponData.ammo;
     this.maxAmmo = projectileWeaponData.maxAmmo;
+  }
+
+  protected void SetAmmoText(int ammo)
+  {
+    gameUI.SetCurrentAmmo(currentAmmo);
   }
 }

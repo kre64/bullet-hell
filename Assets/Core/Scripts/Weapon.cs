@@ -9,20 +9,21 @@ public abstract class Weapon : MonoBehaviour
 
   protected GameUI gameUI;
 
-  public virtual void OnFire()
+  private void OnFire()
   {
     // Need this check because OnFire still invoked on disabled scripts
-    if (this.enabled)
-    {
+    // if (this.enabled)
+    // {
       Shoot();
-    }
+    // }
   }
+
+  public abstract void Shoot();
+
+  public abstract void Fire();
 
   protected void AttachGameUI()
   {
     gameUI = FindObjectOfType<GameUI>();
-    Debug.Log(gameUI);
   }
-
-  public abstract void Shoot();
 }
