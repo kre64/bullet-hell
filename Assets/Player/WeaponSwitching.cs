@@ -56,6 +56,7 @@ public class WeaponSwitching : MonoBehaviour
       if (i == selectedWeapon)
       {
         weaponHolder.transform.GetChild(i).gameObject.SetActive(true);
+        // (this.gameObject.GetComponent(WEAPONS[i]) as MonoBehaviour).enabled = true;
       }
       else
       {

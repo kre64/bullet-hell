@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Lasergun
   m_EditorClassIdentifier: 
   damage: 10
-  heatPerShot: 10
-  maxHeat: 100
-  heatDecrement: 8
-  heatDecrementTime: 0.8
+  heatPerShot: 0.4
+  heatCooldownRate: 0.2
   maxDistance: 8
   knockbackForce: 1
   knockbackDelay: 0.05

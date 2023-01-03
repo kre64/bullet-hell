@@ -11,11 +11,7 @@ public abstract class Weapon : MonoBehaviour
 
   private void OnFire()
   {
-    // Need this check because OnFire still invoked on disabled scripts
-    // if (this.enabled)
-    // {
-      Shoot();
-    // }
+    Shoot();
   }
 
   public abstract void Shoot();

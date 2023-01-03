@@ -7,22 +7,27 @@ public class RaycastWeapon : Weapon
   public RaycastWeaponData raycastWeaponData;
   public LineRenderer lineRenderer;
 
-  protected int maxHeat = 100;
-  protected int heat = 0;
+  private const float MAX_HEAT = 1f;
+  protected float heat = 0f;
 
   private int damage = 4;
-  private int heatPerShot = 10;
-  private int heatDecrement = 1;
-  private float heatDecrementTime = 0.6f;
+  private float heatPerShot = 0.2f;
+  private float heatCooldownRate = 0.6f;
   private float knockbackForce = 5f;
   private float knockbackDelay = 0.1f;
   private float maxDistance = 100;
   private bool allowFire = true;
+  private bool overHeated = false;
 
   void Awake()
   {
     AttachGameUI();
     SetWeaponValues(raycastWeaponData);
+  }
+
+  void Update()
+  {
+    ReduceHeat();
   }
 
   public override void Shoot()
@@ -36,9 +41,14 @@ public class RaycastWeapon : Weapon
   public override void Fire()
   {
     RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, maxDistance);
-    // TODO: Maybe add a SetHeat func
-    heat = heat + heatPerShot > maxHeat ? maxHeat : heat + heatPerShot;
-    SetHeatText(heat);
+    heat += heatPerShot;
+
+    if (heat >= MAX_HEAT)
+    {
+      Debug.Log("OVERHEATED");
+      overHeated = true;
+      heat = MAX_HEAT;
+    }
 
     if (hitInfo)
     {
@@ -64,74 +74,44 @@ public class RaycastWeapon : Weapon
     StartCoroutine(RaycastShot());
   }
 
-  public void SetWeaponValues(RaycastWeaponData raycastWeaponData)
+  private IEnumerator RaycastShot()
+  {
+    lineRenderer.enabled = true;
+    allowFire = false;
+    // TODO: Attack rate should be a property of the weapon
+    yield return new WaitForSeconds(0.1f);
+    lineRenderer.enabled = false;
+
+    if (!overHeated)
+    {
+      allowFire = true;
+    }
+  }
+
+  private void SetHeatText(float heat)
+  {
+    gameUI.SetCurrentHeat(heat);
+  }
+
+  private void SetWeaponValues(RaycastWeaponData raycastWeaponData)
   {
     this.damage = raycastWeaponData.damage;
     this.heatPerShot = raycastWeaponData.heatPerShot;
-    this.heatDecrementTime = raycastWeaponData.heatDecrementTime;
-    this.heatDecrement = raycastWeaponData.heatDecrement;
-    this.maxHeat = raycastWeaponData.maxHeat;
+    this.heatCooldownRate = raycastWeaponData.heatCooldownRate;
     this.maxDistance = raycastWeaponData.maxDistance;
     this.knockbackForce = raycastWeaponData.knockbackForce;
     this.knockbackDelay = raycastWeaponData.knockbackDelay;
   }
 
-  public IEnumerator RaycastShot()
+  private void ReduceHeat()
   {
-    lineRenderer.enabled = true;
-    allowFire = false;
-
-    if (heat >= maxHeat)
-    {
-      Debug.Log("OVERHEATING");
-      lineRenderer.enabled = false;
-      StartCoroutine(CooldownFromMaxHeat());
-    }
-    else
-    {
-      lineRenderer.enabled = false;
-      yield return new WaitForSeconds(0.1f);
-      allowFire = true;
-      StopAllCoroutines();
-      StartCoroutine(CooldownFromMaxHeat());
-    }
-  }
-
-  public IEnumerator HeatCooldown()
-  {
-    yield return new WaitForSeconds(heatDecrementTime);
-    DecrementHeat();
-  }
-
-  public IEnumerator CooldownFromMaxHeat()
-  {
-    while (heat > 0)
-    {
-      yield return new WaitForSeconds(heatDecrementTime);
-      Debug.Log("OVERHEAT COOLINDOWN " + heat);
-      DecrementHeat();
-    }
-    allowFire = true;
-  }
-
-
-  protected void SetHeatText(int heat)
-  {
-    gameUI.SetCurrentHeat(heat);
-  }
-
-  private void DecrementHeat()
-  {
-    bool isNegativeHeat = heat - heatPerShot < 0;
-
-    if (isNegativeHeat)
-    {
-      heat = 0;
-    }
-    else
-    {
-      heat -= heatDecrement;
-    }
+    heat = Mathf.Max(heat - heatCooldownRate * Time.deltaTime, 0f);
     SetHeatText(heat);
+
+    if (heat == 0 && overHeated)
+    {
+      allowFire = true;
+      overHeated = false;
+    }
   }
 }

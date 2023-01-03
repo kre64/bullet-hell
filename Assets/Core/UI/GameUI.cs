@@ -40,7 +40,7 @@ public class GameUI : MonoBehaviour
     this.currentAmmo.text = ammo.ToString();
   }
 
-  public void SetCurrentHeat(int heat)
+  public void SetCurrentHeat(float heat)
   {
     this.currentHeat.text = heat.ToString();
   }
