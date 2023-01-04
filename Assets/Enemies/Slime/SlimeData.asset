@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55dde71ab5b109b45bcbf2d115b71c12, type: 3}
   m_Name: SlimeData
   m_EditorClassIdentifier: 
-  hp: 12
-  maxHp: 12
-  damage: 3
+  hp: 2
+  maxHp: 2
+  damage: 1
   moveSpeed: 1
