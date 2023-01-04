@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class WeaponSwitching : MonoBehaviour
 {
-  public GameUI gameUI;
+  public GunUI gunUI;
   public GameObject weaponHolder;
   public int selectedWeapon = 0;
 
