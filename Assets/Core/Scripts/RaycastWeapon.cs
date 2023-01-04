@@ -21,7 +21,6 @@ public class RaycastWeapon : Weapon
 
   void Awake()
   {
-    AttachGameUI();
     SetWeaponValues(raycastWeaponData);
   }
 
@@ -90,7 +89,7 @@ public class RaycastWeapon : Weapon
 
   private void SetHeatText(float heat)
   {
-    gameUI.SetCurrentHeat(heat);
+    gunUI.SetCurrentHeat(heat);
   }
 
   private void SetWeaponValues(RaycastWeaponData raycastWeaponData)

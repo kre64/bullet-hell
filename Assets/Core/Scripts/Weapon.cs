@@ -6,8 +6,7 @@ public abstract class Weapon : MonoBehaviour
 {
   public Camera mainCamera;
   public Transform firePoint;
-
-  protected GameUI gameUI;
+  public GunUI gunUI;
 
   private void OnFire()
   {
@@ -18,8 +17,4 @@ public abstract class Weapon : MonoBehaviour
 
   public abstract void Fire();
 
-  protected void AttachGameUI()
-  {
-    gameUI = FindObjectOfType<GameUI>();
-  }
 }

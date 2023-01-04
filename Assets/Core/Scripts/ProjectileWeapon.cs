@@ -14,7 +14,6 @@ public class ProjectileWeapon : Weapon
 
   void Awake()
   {
-    AttachGameUI();
     SetWeaponValues(projectileWeaponData);
   }
 
@@ -45,6 +44,6 @@ public class ProjectileWeapon : Weapon
 
   protected void SetAmmoText(int ammo)
   {
-    gameUI.SetCurrentAmmo(currentAmmo);
+    gunUI.SetCurrentAmmo(currentAmmo);
   }
 }
