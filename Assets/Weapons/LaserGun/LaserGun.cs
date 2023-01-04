@@ -6,6 +6,6 @@ public class Lasergun : RaycastWeapon
 {
   void OnEnable()
   {
-    gameUI.SetActiveWeapon(WeaponType.Lasergun, heat);
+    gunUI.SetActiveWeapon(WeaponType.Lasergun, heat);
   }
 }

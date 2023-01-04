@@ -6,6 +6,6 @@ public class Shotgun : ProjectileWeapon
 {
   void OnEnable()
   {
-    gameUI.SetActiveWeapon(WeaponType.Shotgun, currentAmmo, maxAmmo);
+    gunUI.SetActiveWeapon(WeaponType.Shotgun, currentAmmo, maxAmmo);
   }
 }
