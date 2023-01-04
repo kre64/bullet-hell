@@ -5,11 +5,22 @@ using System;
 
 public class Health : MonoBehaviour
 {
-  public static Action OnPlayerDeath;
-  public static Action OnEnemyDeath;
+  public static event Action OnPlayerDamaged;
+  public static event Action OnPlayerDeath;
+  public static event Action OnEnemyDeath;
 
-  private int hp = 100;
-  private int maxHp = 100;
+  private int hp;
+  private int maxHp;
+
+  public int GetHealth()
+  {
+    return this.hp;
+  }
+
+  public int GetMaxHealth()
+  {
+    return this.maxHp;
+  }
 
   public void SetHealth(int hp, int maxHp)
   {
@@ -28,7 +39,13 @@ public class Health : MonoBehaviour
 
     this.hp -= damageAmount;
 
-    if (hp <= 0)
+    if (this.CompareTag("Player"))
+    {
+      // TODO: Add iframes when player is hit
+      OnPlayerDamaged?.Invoke();
+    }
+
+    if (this.hp <= 0)
     {
       Die();
     }
@@ -41,13 +58,13 @@ public class Health : MonoBehaviour
       throw new System.ArgumentOutOfRangeException("Heal amount cannot be negative");
     }
 
-    bool isOverHeal = hp + healAmount > maxHp;
+    bool isOverHeal = this.hp + healAmount > this.maxHp;
 
     StartCoroutine(VisualIndicator(Color.red));
 
     if (isOverHeal)
     {
-      this.hp = maxHp;
+      this.hp = this.maxHp;
     }
 
     this.hp += healAmount;
