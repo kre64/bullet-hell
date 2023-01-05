@@ -6,7 +6,8 @@ using System;
 public class Health : MonoBehaviour
 {
   public static event Action OnPlayerDamaged;
-  public static event Action OnPlayerDeath;
+  // TODO: Life system?
+  // public static event Action OnPlayerDeath;
   public static event Action OnEnemyDeath;
 
   private int hp;
@@ -81,8 +82,7 @@ public class Health : MonoBehaviour
   {
     if (this.CompareTag("Player"))
     {
-      Time.timeScale = 0;
-      OnPlayerDeath?.Invoke();
+      GameManager.instance.UpdateGameState(GameState.GameOver);
     }
     else
     {
