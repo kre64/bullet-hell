@@ -10,23 +10,22 @@ public class GameOverUI : MonoBehaviour
 
   private int score = 0;
 
-  // Start is called before the first frame update
-  void Start()
+  void Awake()
   {
-    Health.OnPlayerDeath += ActivateGameObject;
     Health.OnEnemyDeath += CountScore;
+    GameManager.OnGameOver += HandleGameOver;
     this.gameObject.SetActive(false);
+  }
+
+  void OnDestroy()
+  {
+    Health.OnEnemyDeath -= CountScore;
+    GameManager.OnGameOver -= HandleGameOver;
   }
 
   public void ReturnToMenu()
   {
-    SceneManager.LoadScene(0);
-  }
-
-  private void OnDestroy()
-  {
-    Health.OnPlayerDeath -= ActivateGameObject;
-    Health.OnEnemyDeath -= CountScore;
+    GameManager.instance.UpdateGameState(GameState.MainMenu);
   }
 
   private void CountScore()
@@ -34,7 +33,7 @@ public class GameOverUI : MonoBehaviour
     score++;
   }
 
-  private void ActivateGameObject()
+  private void HandleGameOver()
   {
     this.gameObject.SetActive(true);
     scoreValueText.text = score.ToString();
