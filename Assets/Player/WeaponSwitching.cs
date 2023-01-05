@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class WeaponSwitching : MonoBehaviour
 {
-  public static readonly string[] WEAPON_SCRIPTS = new string[] { "Pistol", "Shotgun", "LaserGun", "LaserGunTest" };
+  public GunUI gunUI;
   public GameObject weaponHolder;
   public int selectedWeapon = 0;
 
@@ -56,12 +56,11 @@ public class WeaponSwitching : MonoBehaviour
       if (i == selectedWeapon)
       {
         weaponHolder.transform.GetChild(i).gameObject.SetActive(true);
-        (this.gameObject.GetComponent(WEAPON_SCRIPTS[i]) as MonoBehaviour).enabled = true;
+        // (this.gameObject.GetComponent(WEAPONS[i]) as MonoBehaviour).enabled = true;
       }
       else
       {
         weaponHolder.transform.GetChild(i).gameObject.SetActive(false);
-        (this.gameObject.GetComponent(WEAPON_SCRIPTS[i]) as MonoBehaviour).enabled = false;
       }
     }
   }

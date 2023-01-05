@@ -9,7 +9,6 @@ public class Slime : Enemy
   // Start is called before the first frame update
   void Start()
   {
-    InitEnemyValues();
     player = GameObject.FindGameObjectWithTag("Player");
   }
 
@@ -23,7 +22,7 @@ public class Slime : Enemy
   {
     if (player != null)
     {
-      transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+      transform.position = Vector2.MoveTowards(transform.position, player.transform.position, this.moveSpeed * Time.deltaTime);
     }
   }
 
@@ -31,7 +30,7 @@ public class Slime : Enemy
   {
     if (collider.CompareTag("Player") && collider.GetComponent<Health>() != null)
     {
-      collider.GetComponent<Health>().Damage(damage);
+      collider.GetComponent<Health>().Damage(this.damage);
     }
   }
 }

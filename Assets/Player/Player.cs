@@ -5,22 +5,22 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+  public PlayerData playerData;
   public Rigidbody2D rb;
   public Camera mainCamera;
   public GameObject weaponHolder;
 
-  private int hp = 100;
-  private int maxHp = 100;
-  private float moveSpeed = 3f;
+  private int hp;
+  private int maxHp;
+  private float moveSpeed;
   private Vector2 moveDirection;
   private bool facingRight = true;
   private Vector3 mousePosition;
   private GameObject activeGun;
 
-  // Start is called before the first frame update
-  void Start()
+  void Awake()
   {
-    InitPlayer();
+    InitPlayer(playerData);
   }
 
   // Update is called once per frame
@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
 
   private void FixedUpdate()
   {
+    // TODO: Evaluate calls here for perf optimi
     AimAtMouse();
     CheckForFlip();
     Move();
@@ -83,8 +84,9 @@ public class Player : MonoBehaviour
     }
   }
 
-  protected void InitPlayer()
+  protected void InitPlayer(PlayerData playerData)
   {
-    GetComponent<Health>().SetHealth(hp, maxHp);
+    GetComponent<Health>().SetHealth(playerData.hp, playerData.maxHp);
+    this.moveSpeed = playerData.moveSpeed;
   }
 }

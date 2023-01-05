@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55dde71ab5b109b45bcbf2d115b71c12, type: 3}
   m_Name: BigSlimeData
   m_EditorClassIdentifier: 
-  hp: 36
-  maxHp: 36
-  damage: 9
+  hp: 4
+  maxHp: 4
+  damage: 1
   moveSpeed: 0.5
