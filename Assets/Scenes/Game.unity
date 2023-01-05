@@ -520,6 +520,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 1185861831416972158, guid: 4a84bb24d0dba63449c356054ca82e58, type: 3}
+      propertyPath: m_Name
+      value: Lasergun
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a84bb24d0dba63449c356054ca82e58, type: 3}
 --- !u!1 &519420028
