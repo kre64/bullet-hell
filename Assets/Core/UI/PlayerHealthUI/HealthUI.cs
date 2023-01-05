@@ -45,12 +45,6 @@ public class HealthUI : MonoBehaviour
 
     for (int i = 0; i < hearts.Count; i++)
     {
-      // hp = 4
-      // 0
-      // 2
-      // 4
-      // 6
-
       int heartStatusRemainder = (int)Mathf.Clamp(playerHealth.GetHealth() - (i * 2), 0, 2);
       hearts[i].SetHeartImage((HeartStatus)heartStatusRemainder);
     }
