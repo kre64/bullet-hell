@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,8 +35,10 @@ public class GameManager : MonoBehaviour
     {
       case GameState.MainMenu:
         Debug.Log("Main Menu");
+        SceneManager.LoadScene((int)Scenes.MainMenu);
         break;
       case GameState.InGame:
+        SceneManager.LoadScene((int)Scenes.Game);
         Debug.Log("In Game");
         break;
       case GameState.ExitGame:
